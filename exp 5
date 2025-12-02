@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+// Function to find factorial using iteration
+int fact_iterative(int n)
+{
+    int i, fact = 1;
+    for(i = 1; i <= n; i++)
+    {
+        fact = fact * i;
+    }
+    return fact;
+}
+
+// Function to find factorial using recursion
+int fact_recursive(int n)
+{
+    if(n == 0 || n == 1)
+        return 1;
+    else
+        return n * fact_recursive(n - 1);
+}
+
+int main()
+{
+    int num;
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    printf("Factorial (Iterative) = %d\n", fact_iterative(num));
+    printf("Factorial (Recursive) = %d\n", fact_recursive(num));
+
+    return 0;
+}
