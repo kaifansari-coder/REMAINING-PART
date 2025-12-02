@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct employee {
+    int id;
+    char name[50];
+    float salary;
+};
+
+int main() {
+    struct employee e;
+    FILE *fp;
+    int choice;
+
+    do {
+        printf("\n---- Employee Database ----\n");
+        printf("1. Add Employee Record\n");
+        printf("2. Display All Records\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        if(choice == 1) {
+            fp = fopen("employee.txt", "a");    // open file in append mode
+            if(fp == NULL) {
+                printf("File cannot be opened.\n");
+                exit(0);
+            }
+
+            printf("Enter Employee ID: ");
+            scanf("%d", &e.id);
+
+            printf("Enter Employee Name: ");
+            scanf("%s", e.name);
+
+            printf("Enter Salary: ");
+            scanf("%f", &e.salary);
+
+            fprintf(fp, "%d %s %.2f\n", e.id, e.name, e.salary);
+
+            fclose(fp);
+            printf("Record Added Successfully!\n");
+        }
+
+        else if(choice == 2) {
+            fp = fopen("employee.txt", "r");    // open file in read mode
+            if(fp == NULL) {
+                printf("No records found.\n");
+                exit(0);
+            }
+
+            printf("\nID\tName\tSalary\n");
+            printf("----------------------------\n");
+            while(fscanf(fp, "%d %s %f", &e.id, e.name, &e.salary) != EOF) {
+                printf("%d\t%s\t%.2f\n", e.id, e.name, e.salary);
+            }
+
+            fclose(fp);
+        }
+
+    } while(choice != 3);
+
+    return 0;
+}
